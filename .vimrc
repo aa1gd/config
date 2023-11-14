@@ -72,9 +72,6 @@ set whichwrap+=<,>,h,l
 set colorcolumn=80
 highlight ColorColumn ctermbg=8
 
-" Load the termdebug plugin
-packadd termdebug
-
 " Enable use of the mouse
 set mouse=a
 
@@ -102,13 +99,20 @@ set notimeout
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>sv :w<cr> :source $MYVIMRC<cr> :noh<cr>
 
+" Load the termdebug plugin
+packadd termdebug
+
+" Open termdebug vertically
+nnoremap <leader>d :Termdebug<cr>
+let g:termdebug_wide=1
+
 " Better tab shortcuts
 nnoremap <leader>tn :tabnew<cr>
 nnoremap <leader><tab> :tabnext<cr>
-nnoremap <leader>tm :tabmove
-nnoremap <leader>tc :tabclose<cr>
+nnoremap <leader><S-tab> :tabprev<cr>
 nnoremap <leader>to :tabonly<cr>
 
+" Go to tab #
 nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
 nnoremap <leader>3 3gt
@@ -120,21 +124,17 @@ nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
 nnoremap <leader>0 0gt
 
-" Open file explorer to the right
-nnoremap <leader>; :Vexplore!<cr>
-
-" Open file explorer in new tab
-nnoremap <leader>: :tabnew<cr>:Explore<cr>
-
-" Open terminal to the right
-nnoremap <leader><cr> :vertical terminal<cr>
-
-" Open terminal in new tab
-nnoremap <leader> :tab terminal<cr>
-
-" Open termdebug vertically
-nnoremap <leader>d :Termdebug<cr>
-let g:termdebug_wide=1
+" Move to tab #
+nnoremap <leader>! :tabmove 0<cr>
+nnoremap <leader>@ :tabmove 1<cr>
+nnoremap <leader># :tabmove 2<cr>
+nnoremap <leader>$ :tabmove 3<cr>
+nnoremap <leader>% :tabmove 4<cr>
+nnoremap <leader>^ :tabmove 5<cr>
+nnoremap <leader>& :tabmove 6<cr>
+nnoremap <leader>* :tabmove 7<cr>
+nnoremap <leader>( :tabmove 8<cr>
+nnoremap <leader>) :tabmove 9<cr>
 
 " DWM-like window navigation
 " https://vim.fandom.com/wiki/Get_Alt_key_to_work_in_terminal
@@ -159,3 +159,30 @@ noremap <a-K> <C-w>K
 
 set <a-t>=t
 noremap <a-t> <C-w>T
+
+set <a-=>==
+noremap <a-=> <C-w>=
+
+" Open file explorer to the right
+nnoremap <leader>; :Vexplore!<cr>
+
+" Open file explorer in new tab
+nnoremap <leader>: :tabnew<cr>:Explore<cr>
+
+" Open terminal to the right
+nnoremap <leader><cr> :vertical terminal<cr>
+
+" Open terminal in new tab
+nnoremap <leader>T :tab terminal<cr>
+
+" Vim terminal mappings
+tnoremap <esc> <C-w>N
+tnoremap <a-l> <C-w>l
+tnoremap <a-h> <C-w>h
+tnoremap <a-j> <C-w>j
+tnoremap <a-k> <C-w>k
+tnoremap <a-L> <C-w>L
+tnoremap <a-H> <C-w>H
+tnoremap <a-J> <C-w>J
+tnoremap <a-K> <C-w>K
+
