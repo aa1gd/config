@@ -1,2 +1,2 @@
 # config
-My config files for vim and bash
+My config files for vim, bash, and tmux
