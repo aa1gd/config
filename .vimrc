@@ -1,3 +1,4 @@
+" Godwin's .vimrc
 set nocompatible
 
 filetype on
@@ -9,10 +10,6 @@ filetype indent on
 syntax on
 
 set number
-
-" set cursorline
-
-" set cursorcolumn
 
 " Set shift width to 4 spaces.
 set shiftwidth=4
@@ -107,16 +104,21 @@ nnoremap <leader>sv :w<cr> :source $MYVIMRC<cr> :noh<cr>
 
 " Better tab shortcuts
 nnoremap <leader>tn :tabnew<cr>
-nnoremap <leader>t<leader> :tabnext<cr>
+nnoremap <leader><tab> :tabnext<cr>
 nnoremap <leader>tm :tabmove
 nnoremap <leader>tc :tabclose<cr>
 nnoremap <leader>to :tabonly<cr>
 
-" Shortcut to compile and run
-" autocmd filetype c nnoremap <C-b> :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' <CR>
-
-" Shortcut to run
-" && ./'.shellescape('%:r')
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>0 0gt
 
 " Open file explorer to the right
 nnoremap <leader>; :Vexplore!<cr>
@@ -126,6 +128,9 @@ nnoremap <leader>: :tabnew<cr>:Explore<cr>
 
 " Open terminal to the right
 nnoremap <leader><cr> :vertical terminal<cr>
+
+" Open terminal in new tab
+nnoremap <leader> :tab terminal<cr>
 
 " Open termdebug vertically
 nnoremap <leader>d :Termdebug<cr>
@@ -142,6 +147,15 @@ noremap <a-l> <C-w>l
 noremap <a-h> <C-w>h
 noremap <a-j> <C-w>j
 noremap <a-k> <C-w>k
+
+set <a-L>=L
+set <a-H>=H
+set <a-J>=J
+set <a-K>=K
+noremap <a-L> <C-w>L
+noremap <a-H> <C-w>H
+noremap <a-J> <C-w>J
+noremap <a-K> <C-w>K
 
 set <a-t>=t
 noremap <a-t> <C-w>T
