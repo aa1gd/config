@@ -1,9 +1,8 @@
-" Godwin's .vimrc
-
-" Change colorscheme
-colorscheme desert
+" Godwin's .vimrc for armlab
 
 set nocompatible
+
+set encoding=UTF-8
 
 filetype on
 
@@ -63,10 +62,6 @@ set wildmenu
 
 " Make wildmenu behave like similar to Bash completion.
 set wildmode=list:longest
-
-" There are certain files that we would never want to edit with Vim.
-" Wildmenu will ignore files with these extensions.
-set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 " Hard wrapping at 72 chars and wrapping cursor at the end of a line
 set textwidth=72
@@ -170,6 +165,7 @@ nnoremap <leader><cr> :vertical terminal<cr>
 nnoremap <leader>T :tab terminal<cr>
 
 " Vim terminal mappings
+" I did noremap earlier. Are the tnoremap's redundant?
 tnoremap <esc> <C-w>N
 tnoremap <a-l> <C-w>l
 tnoremap <a-h> <C-w>h
@@ -180,3 +176,57 @@ tnoremap <a-H> <C-w>H
 tnoremap <a-J> <C-w>J
 tnoremap <a-K> <C-w>K
 
+" PLUGINS using vim-plug
+call plug#begin()
+
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'rafi/awesome-vim-colorschemes'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_theme='bubblegum'
+
+Plug 'airblade/vim-gitgutter'
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'voldikss/vim-floaterm'
+let g:floaterm_keymap_toggle = '<F4>'
+let g:floaterm_width = 0.95
+let g:floaterm_height = 0.95
+
+Plug 'preservim/nerdtree'
+
+" Not configured yet
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+" Change colorscheme - had to be done after loading plugins
+colorscheme sonokai
+
+" NERDTree keybinds
+set <a-d>=d
+set <a-f>=f
+nnoremap <a-d> :NERDTreeToggle<CR>
+
+" What does this do?
+nnoremap <a-f> :NERDTreeFind<CR>
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
