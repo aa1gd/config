@@ -31,3 +31,6 @@ unset rc
 alias cos='cd ~/Documents/Fall\ 2023/COS217/Assignments'
 alias armlab='ssh gd9138@armlab.cs.princeton.edu'
 alias :q='exit'
+
+# Better version of cat
+alias cat='bat'
