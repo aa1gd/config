@@ -197,6 +197,7 @@ let g:floaterm_width = 0.95
 let g:floaterm_height = 0.95
 
 Plug 'preservim/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Not configured yet
 Plug 'junegunn/fzf.vim'

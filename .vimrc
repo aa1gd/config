@@ -201,8 +201,22 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='bubblegum'
 
+" Smooth scrolling
+Plug 'psliwka/vim-smoothie'
+
+" Startup screen
+Plug 'mhinz/vim-startify'
+
+" Minimap
+"Plug 'wfxr/minimap.vim'
+
+" Removes highlighting after search
+Plug 'romainl/vim-cool'
+
+" Git markers
 Plug 'airblade/vim-gitgutter'
 
+" Git integration
 Plug 'tpope/vim-fugitive'
 
 Plug 'voldikss/vim-floaterm'
@@ -210,10 +224,21 @@ let g:floaterm_keymap_toggle = '<F4>'
 let g:floaterm_width = 0.95
 let g:floaterm_height = 0.95
 
+" Drawer file explorer
 Plug 'preservim/nerdtree'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Not configured yet
 Plug 'junegunn/fzf.vim'
+
+" Commenting
+Plug 'preservim/nerdcommenter'
+
+" Closing brackets
+Plug 'tpope/vim-endwise'
+
+" Live linting
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -225,12 +250,7 @@ set <a-d>=d
 set <a-f>=f
 nnoremap <a-d> :NERDTreeToggle<CR>
 
-" What does this do?
 nnoremap <a-f> :NERDTreeFind<CR>
-
-" Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -244,3 +264,8 @@ autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' 
 
 " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
+
+" ALE settings
+" ALE status in the status bar
+let g:airline#extensions#ale#enabled = 1
+
