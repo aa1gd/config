@@ -177,15 +177,16 @@ tnoremap <a-J> <C-w>J
 tnoremap <a-K> <C-w>K
 
 " PLUGINS using vim-plug
+" Removing some because they're slow over ssh
 call plug#begin()
 
 Plug 'ryanoasis/vim-devicons'
 
-Plug 'rafi/awesome-vim-colorschemes'
+"Plug 'rafi/awesome-vim-colorschemes'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='bubblegum'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+"let g:airline_theme='bubblegum'
 
 Plug 'airblade/vim-gitgutter'
 
@@ -204,7 +205,8 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Change colorscheme - had to be done after loading plugins
-colorscheme sonokai
+"colorscheme sonokai
+colorscheme desert
 
 " NERDTree keybinds
 set <a-d>=d
