@@ -34,3 +34,8 @@ alias :q='exit'
 
 # Better version of cat
 alias cat='bat'
+
+# fzf settings
+export FZF_DEFAULT_COMMAND="fd --type f"
+source /usr/share/fzf/shell/key-bindings.bash
+

@@ -102,6 +102,10 @@ set notimeout
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>sv :w<cr> :source $MYVIMRC<cr> :noh<cr>
 
+" Editing .bashrc
+nnoremap <leader>eb :tabe ~/.bashrc<cr>
+nnoremap <leader>sb :w<cr> :source ~/.bashrc<cr> :noh<cr>
+
 " Load the termdebug plugin
 packadd termdebug
 
@@ -224,18 +228,17 @@ let g:floaterm_keymap_toggle = '<F4>'
 let g:floaterm_width = 0.95
 let g:floaterm_height = 0.95
 
+" Fuzzy finder
+Plug 'junegunn/fzf.vim'
+
 " Drawer file explorer
 Plug 'preservim/nerdtree'
 "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-" Not configured yet
-Plug 'junegunn/fzf.vim'
-
 " Commenting
 Plug 'preservim/nerdcommenter'
 
-" Closing brackets
-Plug 'tpope/vim-endwise'
+"Plug 'tpope/vim-endwise'
 
 " Live linting
 Plug 'dense-analysis/ale'
@@ -245,11 +248,15 @@ call plug#end()
 " Change colorscheme - had to be done after loading plugins
 colorscheme sonokai
 
+" FZF keybinds
+nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <C-f> :BLines<CR>
+"nnoremap <silent> <C-F> :Rg<CR>
+
 " NERDTree keybinds
 set <a-d>=d
 set <a-f>=f
 nnoremap <a-d> :NERDTreeToggle<CR>
-
 nnoremap <a-f> :NERDTreeFind<CR>
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
