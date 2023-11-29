@@ -84,6 +84,14 @@ set splitright
 let mapleader = "\<Space>"
 set notimeout
 
+" Beginning and end of line
+nnoremap H ^
+nnoremap L $
+
+" Search results always in middle, and open fold
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
 " Editing .vimrc
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>sv :w<cr> :source $MYVIMRC<cr> :noh<cr>
@@ -165,7 +173,6 @@ nnoremap <leader><cr> :vertical terminal<cr>
 nnoremap <leader>T :tab terminal<cr>
 
 " Vim terminal mappings
-" I did noremap earlier. Are the tnoremap's redundant?
 tnoremap <esc> <C-w>N
 tnoremap <a-l> <C-w>l
 tnoremap <a-h> <C-w>h
@@ -182,25 +189,30 @@ call plug#begin()
 
 Plug 'ryanoasis/vim-devicons'
 
-"Plug 'rafi/awesome-vim-colorschemes'
+" Removes highlighting after search
+Plug 'romainl/vim-cool'
 
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
-"let g:airline_theme='bubblegum'
-
+" Git markers
 Plug 'airblade/vim-gitgutter'
 
+" Git integration
 Plug 'tpope/vim-fugitive'
 
+" Floating terminal
 Plug 'voldikss/vim-floaterm'
 let g:floaterm_keymap_toggle = '<F4>'
 let g:floaterm_width = 0.95
 let g:floaterm_height = 0.95
 
 Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-" Not configured yet
+" Commenting
+Plug 'preservim/nerdcommenter'
+
+" Live linting
+Plug 'dense-analysis/ale'
+
+" Fuzzy finder
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
@@ -213,8 +225,6 @@ colorscheme desert
 set <a-d>=d
 set <a-f>=f
 nnoremap <a-d> :NERDTreeToggle<CR>
-
-" What does this do?
 nnoremap <a-f> :NERDTreeFind<CR>
 
 " Start NERDTree when Vim is started without file arguments.
@@ -231,5 +241,3 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-" Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
