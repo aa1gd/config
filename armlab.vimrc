@@ -204,6 +204,10 @@ let g:floaterm_keymap_toggle = '<F4>'
 let g:floaterm_width = 0.95
 let g:floaterm_height = 0.95
 
+" Fuzzy finder
+Plug 'junegunn/fzf.vim'
+
+" Drawer file explorer
 Plug 'preservim/nerdtree'
 
 " Commenting
@@ -212,13 +216,9 @@ Plug 'preservim/nerdcommenter'
 " Live linting
 Plug 'dense-analysis/ale'
 
-" Fuzzy finder
-Plug 'junegunn/fzf.vim'
-
 call plug#end()
 
 " Change colorscheme - had to be done after loading plugins
-"colorscheme sonokai
 colorscheme desert
 
 " NERDTree keybinds
@@ -226,10 +226,6 @@ set <a-d>=d
 set <a-f>=f
 nnoremap <a-d> :NERDTreeToggle<CR>
 nnoremap <a-f> :NERDTreeFind<CR>
-
-" Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
