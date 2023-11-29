@@ -36,6 +36,11 @@ alias :q='exit'
 alias cat='bat'
 
 # fzf settings
-export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix"
 source /usr/share/fzf/shell/key-bindings.bash
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# GCC ARM8 cross compiler
+export PATH=$PATH:~/Documents/Fall\ 2023/COS217/gcc-arm-none-eabi-10.3-2021.10/bin
 

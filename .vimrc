@@ -14,6 +14,9 @@ syntax on
 
 set number
 
+" Smart indenting
+set smartindent
+
 " Set shift width to 4 spaces.
 set shiftwidth=4
 
@@ -97,6 +100,14 @@ set splitright
 
 let mapleader = "\<Space>"
 set notimeout
+
+" Beginning and end of line
+nnoremap H ^
+nnoremap L $
+
+" Search results always in middle, and open fold
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 " Editing .vimrc
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
@@ -211,9 +222,6 @@ Plug 'psliwka/vim-smoothie'
 " Startup screen
 Plug 'mhinz/vim-startify'
 
-" Minimap
-"Plug 'wfxr/minimap.vim'
-
 " Removes highlighting after search
 Plug 'romainl/vim-cool'
 
@@ -238,10 +246,11 @@ Plug 'preservim/nerdtree'
 " Commenting
 Plug 'preservim/nerdcommenter'
 
-"Plug 'tpope/vim-endwise'
-
 " Live linting
 Plug 'dense-analysis/ale'
+
+" LaTeX integration
+Plug 'xuhdev/vim-latex-live-preview' ", { 'for': 'tex' }
 
 call plug#end()
 
@@ -251,7 +260,7 @@ colorscheme sonokai
 " FZF keybinds
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <C-f> :BLines<CR>
-"nnoremap <silent> <C-F> :Rg<CR>
+nnoremap <silent> <C-F> :Rg<CR>
 
 " NERDTree keybinds
 set <a-d>=d
@@ -270,9 +279,13 @@ autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' 
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
+"autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 " ALE settings
 " ALE status in the status bar
 let g:airline#extensions#ale#enabled = 1
 
+" LaTeX Preview Settings
+"autocmd Filetype tex setl updatetime=1000
+nnoremap <leader>L :LLPStartPreview<CR>
+let g:livepreview_engine = 'pdflatex'
